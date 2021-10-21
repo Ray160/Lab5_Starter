@@ -6,8 +6,10 @@ window.addEventListener('DOMContentLoaded', init);
 
 
 function init() {
+  const jsConfetti = new JSConfetti();
+
   let option = document.getElementById('horn-select');
-  let audio = document.getElementsByClassName('hidden');
+  let audio = document.getElementsByClassName('hidden')[0];
 
   function select_changes(){
     console.log('selected = ',document.getElementById('horn-select').value);
@@ -52,5 +54,19 @@ function init() {
   }
 
   volume_slider.addEventListener('change', volume_changes);
+
+  let button = document.getElementsByTagName('button')[0];
+
+  function button_click(){
+    if(option.value != 'party_horn'){
+      jsConfetti.addConfetti();
+    }
+    if(option.value != 'select'){
+      audio.play();
+    }
+    
+  }
+  button.addEventListener('click', button_click);
+
 
 }
